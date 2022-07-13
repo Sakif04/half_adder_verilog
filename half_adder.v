@@ -1,6 +1,6 @@
 module half_adder(input inA,input inB, output Cout,output sum);
     assign Cout=inA&inB;
-    assign sum=inA^inB^Cout;
+    assign sum=inA^inB;
     
 endmodule
 
