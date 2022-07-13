@@ -1,0 +1,40 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01224EF0 .scope module, "test_adder" "test_adder" 2 7;
+ .timescale 0 0;
+v01223DA8_0 .net "Cout", 0 0, L_0122ED50; 1 drivers
+v0122EC48_0 .var "a", 0 0;
+v0122ECA0_0 .var "b", 0 0;
+v0122ECF8_0 .net "sum", 0 0, L_0122EE68; 1 drivers
+S_01223368 .scope module, "H1" "half_adder" 2 11, 2 1, S_01224EF0;
+ .timescale 0 0;
+L_0122ED50 .functor AND 1, v0122ECA0_0, v0122EC48_0, C4<1>, C4<1>;
+L_0122EE30 .functor XOR 1, v0122ECA0_0, v0122EC48_0, C4<0>, C4<0>;
+L_0122EE68 .functor XOR 1, L_0122EE30, L_0122ED50, C4<0>, C4<0>;
+v012233F0_0 .alias "Cout", 0 0, v01223DA8_0;
+v01223448_0 .net *"_s2", 0 0, L_0122EE30; 1 drivers
+v01223CA0_0 .net "inA", 0 0, v0122ECA0_0; 1 drivers
+v01223CF8_0 .net "inB", 0 0, v0122EC48_0; 1 drivers
+v01223D50_0 .alias "sum", 0 0, v0122ECF8_0;
+    .scope S_01224EF0;
+T_0 ;
+    %vpi_call 2 13 "$monitor", "half added ", v0122EC48_0, " and ", v0122ECA0_0, ":", v0122ECF8_0;
+    %set/v v0122EC48_0, 0, 1;
+    %set/v v0122ECA0_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0122EC48_0, 0, 1;
+    %set/v v0122ECA0_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0122EC48_0, 1, 1;
+    %set/v v0122ECA0_0, 1, 1;
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "half_adder.v";
