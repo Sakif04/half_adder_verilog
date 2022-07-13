@@ -12,11 +12,14 @@ module test_adder();
     initial begin
         $monitor("half added ",a," and ",b,":",sum);
         a=1'b0;
-        b=1'b1;
-        #20
-        a=1'b0;
         b=1'b0;
         #20
+        a=1'b0;
+        b=1'b1;
+        #20
+        a=1'b1;
+        b=1'b0;
+        #10
         a=1'b1;
         b=1'b1;
     end
